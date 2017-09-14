@@ -9,47 +9,31 @@ import org.apache.hadoop.io.WritableComparator;
 
 		public class User implements WritableComparable<User>
 		{
-
-			private String name = "";
-			private int id;
+			private String id;
 			private long commonFriends = 0;
 
 	public User()
 	{
 	}
+	public User(String id, long commonFriends)
+	{
+		this.id=id;
+		this.commonFriends = commonFriends;
+	}
 
-	public User(int id, long commonFriends)
+	public void set(String id, long commonFriends)
 	{
 		this.id=id;
 		this.commonFriends = commonFriends;
 	}
 	
-	public User(String name, int id, long commonFriends)
-	{
-		this.name = name;
-		this.id=id;
-		this.commonFriends = commonFriends;
-	}
-
-	public void set(int id, long commonFriends)
+	public void set(String name, String id, long commonFriends)
 	{
 		this.id=id;
 		this.commonFriends = commonFriends;
 	}
-	
-	public void set(String name, int id, long commonFriends)
-	{
-		this.name = name;
-		this.id=id;
-		this.commonFriends = commonFriends;
-	}
 
-	public String getName()
-	{
-		return this.name;
-	}
-
-	public int getId()
+	public String getId()
 	{
 		return id;
 	}
@@ -62,16 +46,14 @@ import org.apache.hadoop.io.WritableComparator;
 	@Override
 	public void readFields(DataInput in) throws IOException
 	{
-		this.name = in.readUTF();
-		this.id = in.readInt();
+		this.id = in.readUTF();
 		this.commonFriends = in.readLong();
 	}
 
 	@Override
 	public void write(DataOutput out) throws IOException
 	{
-		out.writeUTF(name);
-		out.writeInt(id);
+		out.writeUTF(id);
 		out.writeLong(this.commonFriends);
 	}
 
@@ -80,7 +62,7 @@ import org.apache.hadoop.io.WritableComparator;
 	{
 		if (this.id != other.id)
 		{
-			Integer x=this.id;
+			String x=this.id;
 			return x.compareTo(other.id);
 		} else if (this.commonFriends != other.commonFriends)
 		{

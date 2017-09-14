@@ -14,7 +14,7 @@ public class UserComparator extends WritableComparator {
 		User p1 = (User) w1;
 		User p2 = (User) w2;
 
-		Integer id1=p1.getId();
+		String id1=p1.getId();
 		int cmp = id1.compareTo(p2.getId());
 		if (cmp != 0) {
 			return cmp;

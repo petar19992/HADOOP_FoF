@@ -15,7 +15,7 @@ public class UserIdComparator extends WritableComparator {
 		User p1 = (User) o1;
 		User p2 = (User) o2;
 
-		Integer id=p1.getId();
+		String id=p1.getId();
 		return id.compareTo(p2.getId());
 
 	}
